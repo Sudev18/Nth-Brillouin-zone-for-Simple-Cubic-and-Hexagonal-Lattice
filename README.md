@@ -1,0 +1,2 @@
+# Nth-Brillouin-zone-for-Simple-Cubic-and-Hexagonal-Lattice
+an algorithm to find k-space regions for higher order Brillouin zones. Nth Brillouin zone is a region where every k-point when joined with origin, crosses N-1 Bragg planes. A k-point is in the nth BZ if the mathematical relation ∣k∣ &lt; ∣k - G∣ (1) fails for exactly (n - 1) G vectors. The sorting algorithm uses the G vectors that define the reciprocal lattice so that: 1. A k-point is chosen. 2. The relation (1) is tested for each G vector where n is the total number of fails. 3. The point is in the (n + 1)th BZ.
