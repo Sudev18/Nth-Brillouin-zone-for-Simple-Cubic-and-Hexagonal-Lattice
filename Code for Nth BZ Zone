@@ -1,0 +1,215 @@
+# 17th October,20921
+# coding: Sudev
+# Nth BZ Zone Representation Code
+
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+figure(figsize=(11, 11), dpi=80)
+import seaborn as sns
+sns.set_theme()
+
+#Square Lattice
+#sudev
+
+#Reciporcal lattice vectors for Simple Cubic Lattice
+b1 = np.array([1,0])
+b2 = np.array([0,1])
+
+R = range(-2,3)
+G = []
+for i in R:
+    for j in R:
+        O = i*b1+j*b2
+        G.append(O)
+        
+recip_lattice = pd.DataFrame(G)        
+
+
+
+#printing the lattice vectors
+
+
+print("Recip lattice vectors for simple cubic- ")
+print(recip_lattice)
+print("")
+print("--------------------------------------------------------")
+print("")
+
+#this will create the lattice points
+plt.scatter(recip_lattice[0],recip_lattice[1],color="orange")
+
+
+
+kx = np.linspace(-2,2,200)
+
+
+#Sorting Algorithm
+#1. A k-point is chosen.
+#2. The relation(1) is tested for each G vector where n is the total number of fails.
+#3. The point is in the (n + 1)th BZ.
+H = []
+
+for i in kx:
+    for j in kx:
+        n = 1
+        k = i*b1+j*b2
+        mod_k = np.sqrt((k[0]**2)+(k[1]**2))
+        
+        for a in G:
+            k_prime = k-a
+            
+            mod_k_prime = np.sqrt((k_prime[0]**2)+(k_prime[1]**2))
+            if (mod_k > mod_k_prime):
+                n = n+1
+        H.append([k[0],k[1],n])
+        
+    
+            
+recip_lattice_prime = pd.DataFrame(H)            
+
+#k points 
+
+print("reciprocal lattice prime")
+print(recip_lattice_prime)
+
+print("")
+print("-------------------------------------------------------------------------")
+print("")
+#assigning the BZ zone variable 
+BZ1 = recip_lattice_prime[recip_lattice_prime[2] == 1]
+BZ2 = recip_lattice_prime[recip_lattice_prime[2] == 2]
+BZ3 = recip_lattice_prime[recip_lattice_prime[2] == 3]
+BZ4 = recip_lattice_prime[recip_lattice_prime[2] == 4]
+BZ5 = recip_lattice_prime[recip_lattice_prime[2] == 5]
+
+
+# plotting the BZ Zone of the simple cubic
+plt.title('Brillouin zone for square lattice')
+plt.xlabel('x --->')
+plt.ylabel('Y --->')
+plt.scatter(BZ1[0],BZ1[1] ,color="#FFA54F" ,label='1st BZ')
+plt.scatter(BZ2[0],BZ2[1] ,color="#FFF68F" ,label='2nd BZ')
+plt.scatter(BZ3[0],BZ3[1] ,color="#20B2AA" ,label='3rd BZ')
+plt.scatter(BZ4[0],BZ4[1] ,color="#98FB98" ,label='4th BZ')
+plt.scatter(BZ5[0],BZ5[1] ,color="#CD6889" ,label='5th BZ')
+plt.scatter(recip_lattice[0],recip_lattice[1])
+plt.legend()
+
+'''
+plt.scatter(BZ1[0],BZ1[1] ,color="#009ACD" ,label='1stBZ')
+plt.scatter(BZ2[0],BZ2[1] ,color="#E3CF57" ,label='2ndBZ')
+plt.scatter(BZ3[0],BZ3[1] ,color="#FF4040" ,label='3rdBZ')
+plt.scatter(BZ4[0],BZ4[1] ,color="#20B2AA" ,label='4thBZ')
+plt.scatter(BZ5[0],BZ5[1] ,color="#FF8000" ,label='5thBZ')
+plt.scatter(recip_lattice[0],recip_lattice[1])
+plt.legend()
+plt.title('Brillouin zone for Simple Cubic lattice')
+'''
+
+plt.show()
+
+
+
+
+
+print("---------------------------------------------------------------------")
+
+
+
+
+
+
+
+
+# HEXAGONAL LATTICE
+
+print("Hexagonal Lattice")
+
+#reciprocal lattice vectors for the Hexagonal lattice
+b1 = np.array([1,0.577])
+b2 = np.array([0,1.1547])
+
+R = range(-2,3)
+G = []
+for i in R:
+    for j in R:
+        O = i*b1+j*b2
+        G.append(O)
+        
+recip_lattice = pd.DataFrame(G)  
+
+
+#printing the lattice vectors
+print("")
+print("")
+print("Recip lattice vectors for Hexagonal Lattice- ")
+print(recip_lattice)
+print("")
+print("---------------------------------------------------------------------")
+print("")
+
+
+
+#Sorting Algorithm
+#1. A k-point is chosen.
+#2. The relation(1) is tested for each G vector where n is the total number of fails.
+#3. The point is in the (n + 1)th BZ.
+
+x = np.linspace(-2,2,200)
+
+H = []
+
+for i in kx:
+    for j in kx:
+        n = 1
+        k = i*b1+j*b2
+        mod_k = np.sqrt((k[0]**2)+(k[1]**2))
+        
+        for a in G:
+            k_prime = k-a
+            
+            mod_k_prime = np.sqrt((k_prime[0]**2)+(k_prime[1]**2))
+            if (mod_k > mod_k_prime):
+                n = n+1
+        H.append([k[0],k[1],n])
+        
+    
+            
+recip_lattice_prime = pd.DataFrame(H)           
+figure(figsize=(11, 11), dpi=80)
+
+#k points 
+
+print("reciprocal lattice prime")
+print(recip_lattice_prime)
+
+print("")
+print("----------------------------------------------------------------------")
+print("")
+
+#assigning the BZ zone variable 
+BZ1 = recip_lattice_prime[recip_lattice_prime[2] == 1]
+BZ2 = recip_lattice_prime[recip_lattice_prime[2] == 2]
+BZ3 = recip_lattice_prime[recip_lattice_prime[2] == 3]
+BZ4 = recip_lattice_prime[recip_lattice_prime[2] == 4]
+BZ5 = recip_lattice_prime[recip_lattice_prime[2] == 5]
+
+
+#Plotting the BZ Zone of the Hexagonal Lattice
+
+plt.title('Brillouin zone for hexagonal lattice')
+plt.xlabel('x --->')
+plt.ylabel('Y --->')
+plt.scatter(BZ1[0],BZ1[1] ,color="#FFA54F" ,label='1st BZ')
+plt.scatter(BZ2[0],BZ2[1] ,color="#FFF68F" ,label='2nd BZ')
+plt.scatter(BZ3[0],BZ3[1] ,color="#20B2AA" ,label='3rd BZ')
+plt.scatter(BZ4[0],BZ4[1] ,color="#98FB98" ,label='4th BZ')
+plt.scatter(BZ5[0],BZ5[1] ,color="#CD6889" ,label='5th BZ')
+plt.scatter(recip_lattice[0],recip_lattice[1])
+plt.legend()
+
+
+
+plt.show()
